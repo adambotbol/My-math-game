@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "units": "Unit map",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "onboarding": {
+    "title": "Welcome to MathQuest",
+    "subtitle": "Pick your avatar and daily goal",
+    "dailyGoal": "Daily goal",
+    "minutes": "{{minutes}} min",
+    "cta": "Let's go"
+  }
+}

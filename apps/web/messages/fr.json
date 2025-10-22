@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "units": "Carte des unités",
+    "profile": "Profil",
+    "settings": "Réglages"
+  },
+  "onboarding": {
+    "title": "Bienvenue dans MathQuest",
+    "subtitle": "Choisis ton avatar et ton objectif quotidien",
+    "dailyGoal": "Objectif quotidien",
+    "minutes": "{{minutes}} min",
+    "cta": "Prêt pour l'aventure"
+  }
+}

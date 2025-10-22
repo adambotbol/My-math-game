@@ -1,0 +1,22 @@
+[
+  { "domain": "Nombres & calculs", "code": "NC-ADD-INT", "label": "Addition d'entiers", "description": "Additionner des entiers jusqu'à 1 000." },
+  { "domain": "Nombres & calculs", "code": "NC-SUB-INT", "label": "Soustraction d'entiers", "description": "Soustraire avec ou sans retenue." },
+  { "domain": "Nombres & calculs", "code": "NC-MULT-BASE", "label": "Multiplication", "description": "Tables et produits à deux chiffres." },
+  { "domain": "Nombres & calculs", "code": "NC-DIV-EUCL", "label": "Division euclidienne", "description": "Comprendre quotient et reste." },
+  { "domain": "Nombres & calculs", "code": "NC-FRAC-INTRO", "label": "Fractions", "description": "Lire et représenter des fractions simples." },
+  { "domain": "Grandeurs & mesures", "code": "GM-LEN-CONV", "label": "Conversions de longueurs", "description": "Convertir m, cm, mm." },
+  { "domain": "Grandeurs & mesures", "code": "GM-AREA-BASIC", "label": "Aires de figures", "description": "Calculer l'aire d'un rectangle." },
+  { "domain": "Grandeurs & mesures", "code": "GM-ANGLE-MEASURE", "label": "Mesure d'angles", "description": "Utiliser le rapporteur." },
+  { "domain": "Grandeurs & mesures", "code": "GM-TIME-CONV", "label": "Conversions de durées", "description": "Passer des minutes aux heures." },
+  { "domain": "Espace & géométrie", "code": "EG-VOCAB", "label": "Vocabulaire géométrique", "description": "Points, segments, droites." },
+  { "domain": "Espace & géométrie", "code": "EG-SYMM", "label": "Symétrie axiale", "description": "Identifier et tracer des symétries." },
+  { "domain": "Espace & géométrie", "code": "EG-SOLID", "label": "Solides", "description": "Reconnaître les pavés droits." },
+  { "domain": "Organisation & gestion de données", "code": "OGD-TABLEAUX", "label": "Tableaux", "description": "Lire un tableau à double entrée." },
+  { "domain": "Organisation & gestion de données", "code": "OGD-GRAPHIQUES", "label": "Graphiques", "description": "Lire un diagramme en bâtons." },
+  { "domain": "Proportionnalité", "code": "PROP-TABLE", "label": "Tableaux de proportionnalité", "description": "Compléter un tableau multiplicatif." },
+  { "domain": "Proportionnalité", "code": "PROP-ECHELLE", "label": "Échelles", "description": "Lire une carte simple." },
+  { "domain": "Proportionnalité", "code": "PROP-VITESSE", "label": "Vitesses", "description": "Comprendre vitesse moyenne." },
+  { "domain": "Probabilités", "code": "PROB-EXPERIENCE", "label": "Expériences aléatoires", "description": "Lister les issues." },
+  { "domain": "Probabilités", "code": "PROB-FREQUENCE", "label": "Fréquences", "description": "Relier fréquence et probabilité." },
+  { "domain": "Probabilités", "code": "PROB-EVENEMENTS", "label": "Événements", "description": "Décrire des événements simples." }
+]

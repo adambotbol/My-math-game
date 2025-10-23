@@ -1,0 +1,92 @@
+name: Build & Deploy My-math-game
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Detect package manager
+        id: pm
+        run: |
+          if [ -f pnpm-lock.yaml ]; then echo "manager=pnpm" >> $GITHUB_OUTPUT
+          elif [ -f yarn.lock ]; then echo "manager=yarn" >> $GITHUB_OUTPUT
+          else echo "manager=npm" >> $GITHUB_OUTPUT; fi
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: ${{ steps.pm.outputs.manager }}
+
+      - name: Setup pnpm (if needed)
+        if: steps.pm.outputs.manager == 'pnpm'
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install deps (root + apps/web)
+        run: |
+          PM=${{ steps.pm.outputs.manager }}
+          if [ "$PM" = "pnpm" ]; then pnpm install --frozen-lockfile || pnpm install
+          elif [ "$PM" = "yarn" ]; then yarn install --frozen-lockfile || yarn install
+          else npm ci || npm install; fi
+          cd apps/web || exit 1
+          if [ "$PM" = "pnpm" ]; then pnpm install --frozen-lockfile || true
+          elif [ "$PM" = "yarn" ]; then yarn install --frozen-lockfile || true
+          else npm install || true; fi
+
+      - name: Build web (supports Next export or static)
+        working-directory: apps/web
+        run: |
+          OUT_DIR=""
+          if [ -f next.config.js ] || [ -f next.config.mjs ]; then
+            # Next.js export
+            if [ "${{ steps.pm.outputs.manager }}" = "pnpm" ]; then pnpm run build
+            elif [ "${{ steps.pm.outputs.manager }}" = "yarn" ]; then yarn build
+            else npm run build; fi
+            OUT_DIR="out"
+          else
+            # Static build fallback (Vite/vanilla)
+            if [ "${{ steps.pm.outputs.manager }}" = "pnpm" ]; then pnpm run build || true
+            elif [ "${{ steps.pm.outputs.manager }}" = "yarn" ]; then yarn build || true
+            else npm run build || true; fi
+            [ -d dist ] || mkdir -p dist && cp -r ./* dist/
+            OUT_DIR="dist"
+          fi
+          touch "$OUT_DIR/.nojekyll"
+          test -f "$OUT_DIR/index.html" || (echo "❌ index.html manquant dans $OUT_DIR" && exit 1)
+          echo "OUT_DIR=$OUT_DIR" >> $GITHUB_ENV
+
+      - name: Upload artifact for Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/web/${{ env.OUT_DIR }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

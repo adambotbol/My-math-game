@@ -8,7 +8,7 @@ const font = Quicksand({ subsets: ["latin"], weight: ["400", "500", "600", "700"
 export const metadata: Metadata = {
   title: "MathQuest 6e",
   description: "Une aventure mathématique gamifiée pour les collégiens.",
-  metadataBase: new URL("https://example.com"),
+  metadataBase: new URL("https://adambotbol.github.io/My-math-game"),
 };
 
 export default function RootLayout({

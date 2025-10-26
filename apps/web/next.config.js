@@ -6,3 +6,5 @@ module.exports = {
   assetPrefix: isProd ? '/My-math-game/' : '',
   images: { unoptimized: true },
 };
+
+export default nextConfig;

@@ -10,7 +10,8 @@ export default function HomePage() {
         </span>
         <h1 className="text-4xl font-bold sm:text-5xl">Fais décoller ta maîtrise des maths de 6e</h1>
         <p className="text-lg text-white/90">
-          Des leçons courtes, des exercices fun et un compagnon mascotte qui te guide pas à pas. Basé sur le programme officiel,
+    
+// Mise à jour mineure pour déclencher le déploiement      Des leçons courtes, des exercices fun et un compagnon mascotte qui te guide pas à pas. Basé sur le programme officiel,
           avec gamification façon Duolingo.
         </p>
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">

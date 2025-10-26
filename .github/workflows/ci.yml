@@ -57,12 +57,12 @@ jobs:
             [ -d dist ] || mkdir -p dist && cp -r ./* dist/
           fi
           echo "OUT_DIR=$OUT_DIR" >> $GITHUB_ENV
-          test -f "$OUT_DIR/index.html" || (echo "index.html manquant" && exit 1)
+          if [ ! -f "$OUT_DIR/index.html" ]; then echo "index.html manquant"; exit 1; fi
 
       - name: Smoke: "MathQuest 6e"
         working-directory: apps/web
         run: |
-          grep -Riq "MathQuest 6e" "${{ env.OUT_DIR }}/index.html" || (echo "Texte 'MathQuest 6e' non trouvé" && exit 1)
+          if ! grep -Riq "MathQuest 6e" "${{ env.OUT_DIR }}/index.html"; then echo "Texte MathQuest 6e non trouve"; exit 1; fi
 
       - name: Install Lighthouse CI & Pa11y
         run: |

@@ -1,9 +1,8 @@
 /** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === 'production';
-module.exports = {
+const nextConfig = {
   output: 'export',
   basePath: '/My-math-game',
-  assetPrefix: isProd ? '/My-math-game/' : '',
+  assetPrefix: '/My-math-game/',
   images: { unoptimized: true },
 };
 
